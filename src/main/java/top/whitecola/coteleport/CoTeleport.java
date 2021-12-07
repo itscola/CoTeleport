@@ -10,6 +10,7 @@ import top.whitecola.coteleport.commands.Spawn;
 import top.whitecola.coteleport.commands.Tpa;
 import top.whitecola.coteleport.commands.Tpaccept;
 import top.whitecola.coteleport.commands.Tpadeny;
+import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 import top.whitecola.coteleport.listeners.PlayerListener;
 import top.whitecola.threader.HiThread;
 

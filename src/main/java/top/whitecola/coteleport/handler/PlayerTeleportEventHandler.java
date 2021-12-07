@@ -1,4 +1,4 @@
-package top.whitecola.coteleport;
+package top.whitecola.coteleport.handler;
 
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.interfaces.IEventHandler;
