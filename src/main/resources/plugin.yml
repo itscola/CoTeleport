@@ -1,0 +1,20 @@
+name: CoTeleport
+version: 1.0
+author: [white_cola]
+depend:
+  - HiPlugin
+  - HolographicDisplays
+  - EffectLib
+main: top.whitecola.coteleport.CoTeleport
+commands: 
+  ct:
+   usage: /ct [ChildCmd]
+permissions:
+  ct.tpa:
+    default: true
+  ct.tpaccept:
+     default: true
+  ct.tpadeny:
+     default: true
+  ct.spawn:
+    default: true

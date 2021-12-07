@@ -1,0 +1,15 @@
+package top.whitecola.coteleport.utils;
+
+import org.bukkit.OfflinePlayer;
+
+public class PlayerUtils {
+    public static boolean isSamePlayer(OfflinePlayer player, OfflinePlayer player2){
+        if(player==null || player2==null){
+            return false;
+        }
+        if(player.getUniqueId().equals(player2.getUniqueId())){
+            return true;
+        }
+        return false;
+    }
+}
