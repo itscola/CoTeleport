@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ItsACommand(CommandNmae = "tpa",premission = "ct.tpa")
 public class Tpa implements ICommand {
@@ -51,17 +52,9 @@ public class Tpa implements ICommand {
     public List<String> handleArg(CommandSender sender, String handleArg) {
         if (!handleArg.equalsIgnoreCase("[Player]")) {
             return Arrays.asList("");
-        } else {
-            List<String> pn = new ArrayList();
-            Iterator var4 = Bukkit.getOnlinePlayers().iterator();
-
-            while(var4.hasNext()) {
-                Player pl = (Player)var4.next();
-                pn.add(pl.getName());
-            }
-
-            return pn;
         }
+        return Bukkit.getOnlinePlayers().stream().map(i->i.getName()).collect(Collectors.toList());
+
     }
 
     public String getUsage() {
