@@ -1,2 +1,2 @@
 # CoTeleport
-A Bukkit teleport plugin for my server。
+Beta version, under developement.
