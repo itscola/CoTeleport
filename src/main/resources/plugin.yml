@@ -18,3 +18,5 @@ permissions:
      default: true
   ct.spawn:
     default: true
+  ct.back:
+    default: true

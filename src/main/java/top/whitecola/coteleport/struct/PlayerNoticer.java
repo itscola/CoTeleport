@@ -2,11 +2,11 @@ package top.whitecola.coteleport.struct;
 
 import org.bukkit.entity.Player;
 
-public class Noticer {
+public class PlayerNoticer {
     private Player p1;
     private Player p2;
 
-    public Noticer(Player p1,Player p2){
+    public PlayerNoticer(Player p1, Player p2){
         this.p1 = p1;
         this.p2 = p2;
     }

@@ -6,10 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import top.whitecola.commandhandler.HiCommand;
-import top.whitecola.coteleport.commands.Spawn;
-import top.whitecola.coteleport.commands.Tpa;
-import top.whitecola.coteleport.commands.Tpaccept;
-import top.whitecola.coteleport.commands.Tpadeny;
+import top.whitecola.coteleport.commands.*;
+import top.whitecola.coteleport.handler.PlayerBackHandler;
 import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 import top.whitecola.coteleport.listeners.PlayerListener;
 import top.whitecola.threader.HiThread;
@@ -27,7 +25,8 @@ public class CoTeleport extends JavaPlugin {
         thread.start();
     }
     public PlayerTeleportEventHandler teleportEventHandler = new PlayerTeleportEventHandler();
-    public HiCommand commands = new HiCommand(instance,"ct");
+    private PlayerBackHandler playerBackHandler = new PlayerBackHandler();
+    private HiCommand commands = new HiCommand(instance,"ct");
     public EffectManager effectManager = new EffectManager(this);
 
     @Override
@@ -56,6 +55,7 @@ public class CoTeleport extends JavaPlugin {
         commands.addCommand(new Tpaccept());
         commands.addCommand(new Tpadeny());
         commands.addCommand(new Spawn());
+        commands.addCommand(new Back());
     }
 
 
@@ -72,5 +72,9 @@ public class CoTeleport extends JavaPlugin {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         return commands.onTabComplete(sender,command,alias,args);
+    }
+
+    public PlayerBackHandler getPlayerBackHandler() {
+        return playerBackHandler;
     }
 }

@@ -22,7 +22,7 @@ public class SpawnRequest extends AbstractRequest{
         playsound();
         from.sendMessage("§a§l服务器同意了你的回城请求，即将传送。");
         time = System.currentTimeMillis();
-        thread = TeleportUtils.tpaRequestHandle(this,new Noticer(from,null));
+        thread = TeleportUtils.tpaRequestHandle(this,new PlayerNoticer(from,null));
 
     }
 

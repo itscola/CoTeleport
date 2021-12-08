@@ -3,7 +3,6 @@ package top.whitecola.coteleport.struct;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.CoTeleport;
@@ -43,7 +42,7 @@ public class PlayerRequest extends AbstractRequest{
         playsound();
         to.getPlayer().sendMessage("¡ìeµÈ´ý "+from.getName()+" ´«ËÍ¡£");
         time = System.currentTimeMillis();
-        thread = TeleportUtils.tpaRequestHandle(this,new Noticer(from,to));
+        thread = TeleportUtils.tpaRequestHandle(this,new PlayerNoticer(from,to));
     }
 
     @Override

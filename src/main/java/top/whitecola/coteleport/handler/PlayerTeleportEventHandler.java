@@ -2,6 +2,7 @@ package top.whitecola.coteleport.handler;
 
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.interfaces.IEventHandler;
+import top.whitecola.coteleport.struct.AbstractRequest;
 import top.whitecola.coteleport.struct.PlayerRequest;
 import top.whitecola.coteleport.utils.PlayerUtils;
 import top.whitecola.threader.HiThread;
@@ -73,6 +74,8 @@ public class PlayerTeleportEventHandler implements IEventHandler {
         return null;
     }
 
-
-
+    @Override
+    public void removeRequest(AbstractRequest request) {
+        IEventHandler.super.removeRequest(request);
+    }
 }

@@ -11,7 +11,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.CoTeleport;
 import top.whitecola.coteleport.struct.AbstractRequest;
-import top.whitecola.coteleport.struct.Noticer;
+import top.whitecola.coteleport.struct.PlayerNoticer;
 
 public class TeleportUtils {
 
@@ -33,7 +33,7 @@ public class TeleportUtils {
         teleportPlace(from,to.getLocation());
     }
 
-    public static Thread tpaRequestHandle(AbstractRequest request, Noticer noticer){
+    public static Thread tpaRequestHandle(AbstractRequest request, PlayerNoticer noticer){
         Thread th = new Thread(
             ()->{
                 Location fromLocation = request.getFrom().getLocation();
