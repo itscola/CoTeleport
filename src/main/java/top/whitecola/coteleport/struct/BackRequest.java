@@ -14,7 +14,6 @@ public class BackRequest extends AbstractRequest{
     public BackRequest(Player from, Location location){
         this.from = from;
         this.tolcation = location;
-        time = System.currentTimeMillis();
     }
 
     @Override
@@ -31,6 +30,7 @@ public class BackRequest extends AbstractRequest{
 
     @Override
     public void accept() {
+        time = System.currentTimeMillis();
         TeleportUtils.tpaRequestHandle(this,new PlayerNoticer(from,null));
     }
 
