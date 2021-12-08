@@ -14,6 +14,7 @@ public class BackRequest extends AbstractRequest{
     public BackRequest(Player from, Location location){
         this.from = from;
         this.tolcation = location;
+        time = System.currentTimeMillis();
     }
 
     @Override
