@@ -13,6 +13,8 @@ import top.whitecola.coteleport.CoTeleport;
 import top.whitecola.coteleport.struct.AbstractRequest;
 import top.whitecola.coteleport.struct.PlayerNoticer;
 
+import java.util.Collection;
+
 public class TeleportUtils {
 
     public static void teleportPlace(Entity entity, Location to){
@@ -87,5 +89,10 @@ public class TeleportUtils {
         circleEffect.setLocation(location);
         circleEffect.start();
         return circleEffect;
+    }
+
+    public static boolean isPlayerTeleporting(Player player){
+
+        return false;
     }
 }
