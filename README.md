@@ -1,2 +1,2 @@
 # CoTeleport
-Beta version, under developement.
+A lightwight teleporting plugin.
