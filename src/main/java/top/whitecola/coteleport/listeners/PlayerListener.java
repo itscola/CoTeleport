@@ -6,8 +6,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import top.whitecola.coteleport.CoTeleport;
-import top.whitecola.coteleport.struct.BackRequest;
-import top.whitecola.coteleport.struct.PlayerRequest;
+import top.whitecola.coteleport.wrapper.BackRequest;
+import top.whitecola.coteleport.wrapper.PlayerRequest;
 
 public class PlayerListener implements Listener {
     @EventHandler

@@ -1,4 +1,4 @@
-package top.whitecola.coteleport.struct;
+package top.whitecola.coteleport.wrapper;
 
 import org.bukkit.entity.Player;
 

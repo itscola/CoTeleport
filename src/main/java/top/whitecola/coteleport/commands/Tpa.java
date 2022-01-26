@@ -6,12 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import top.whitecola.annotations.ItsACommand;
 import top.whitecola.commandhandler.ICommand;
-import top.whitecola.coteleport.struct.PlayerRequest;
-import top.whitecola.coteleport.utils.PlayerUtils;
+import top.whitecola.coteleport.wrapper.PlayerRequest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package top.whitecola.coteleport.struct;
+package top.whitecola.coteleport.wrapper;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

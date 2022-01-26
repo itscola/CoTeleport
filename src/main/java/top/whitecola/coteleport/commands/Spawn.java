@@ -1,18 +1,14 @@
 package top.whitecola.coteleport.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import top.whitecola.annotations.ItsACommand;
 import top.whitecola.commandhandler.ICommand;
-import top.whitecola.coteleport.struct.AbstractRequest;
-import top.whitecola.coteleport.struct.PlayerRequest;
-import top.whitecola.coteleport.struct.SpawnRequest;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
+import top.whitecola.coteleport.wrapper.SpawnRequest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 

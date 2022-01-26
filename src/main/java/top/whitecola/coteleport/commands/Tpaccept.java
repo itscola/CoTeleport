@@ -6,9 +6,7 @@ import org.bukkit.entity.Player;
 import top.whitecola.annotations.ItsACommand;
 import top.whitecola.commandhandler.ICommand;
 import top.whitecola.coteleport.CoTeleport;
-import top.whitecola.coteleport.struct.PlayerRequest;
-import top.whitecola.coteleport.utils.PlayerUtils;
-import top.whitecola.coteleport.utils.TeleportUtils;
+import top.whitecola.coteleport.wrapper.PlayerRequest;
 
 import java.util.Arrays;
 import java.util.List;

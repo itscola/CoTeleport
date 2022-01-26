@@ -2,25 +2,28 @@ package top.whitecola.coteleport.handler;
 
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.interfaces.IEventHandler;
-import top.whitecola.coteleport.struct.AbstractRequest;
-import top.whitecola.coteleport.struct.PlayerRequest;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
+import top.whitecola.coteleport.wrapper.PlayerRequest;
 import top.whitecola.coteleport.utils.PlayerUtils;
 import top.whitecola.threader.HiThread;
 
 import java.util.Vector;
 
 public class PlayerTeleportEventHandler implements IEventHandler {
-    private Vector<PlayerRequest> requests = new Vector<>();
+    private Vector<AbstractRequest> requests = new Vector<>();
     private HiThread thread = new HiThread("PlayerRequestRemover",1000);
 
     public PlayerTeleportEventHandler(){
         thread.start();
         thread.addTask(()->{
             for(int i=0;i<requests.size();i++){
-                PlayerRequest pr = requests.get(i);
+                AbstractRequest pr = requests.get(i);
                 if((System.currentTimeMillis()-pr.getTime())>=60000){
-                    pr.getFrom().sendMessage("传送请求已超时: "+pr.getFrom().getName()+" -> "+pr.to.getName());
-                    pr.to.sendMessage("传送请求已超时: "+pr.getFrom().getName()+" -> "+pr.to.getName());
+                    pr.getFrom().sendMessage("传送请求已超时: "+pr.getFrom().getName()+" -> "+(pr.getTo().isPresent()?pr.getTo().get().getName():pr.getTolcation()));
+
+                    pr.getTo().ifPresent(player->{
+                        player.sendMessage("传送请求已超时: "+pr.getFrom().getName()+" -> "+player.getName());
+                    });
                     pr.setTime(-1);
                     requests.remove(pr);
                     i = i-1;
@@ -29,15 +32,27 @@ public class PlayerTeleportEventHandler implements IEventHandler {
         });
     }
 
-    public void addRequest(PlayerRequest request){
+    public void addRequest(AbstractRequest request){
 
-        for(int i=0;i<requests.size();i++){
-            PlayerRequest playerRequest = requests.get(i);
-            if(PlayerUtils.isSamePlayer(playerRequest.getFrom(),request.to) || PlayerUtils.isSamePlayer(playerRequest.to,request.to)){
-                requests.remove(playerRequest);
-                i = i-1;
+        for(int i=0;i<requests.size();i++) {
+
+            if (requests.get(i) instanceof PlayerRequest) {
+
+                PlayerRequest playerRequest = (PlayerRequest) requests.get(i);
+                if (PlayerUtils.isSamePlayer(playerRequest.getFrom(), request.getTo().get()) || PlayerUtils.isSamePlayer(playerRequest.to, request.getTo().get())) {
+                    requests.remove(playerRequest);
+                    i = i - 1;
+                }
+
             }
+
+
+
+
         }
+
+
+
 
         requests.add(request);
         return;
@@ -48,7 +63,7 @@ public class PlayerTeleportEventHandler implements IEventHandler {
     }
 
     public PlayerRequest getPlayerRequest(Player from,Player to){
-        for(PlayerRequest pr : requests){
+        for(AbstractRequest pr : requests){
             if(PlayerUtils.isSamePlayer(pr.getFrom(),from) && PlayerUtils.isSamePlayer(pr.to,to)){
                 return pr;
             }

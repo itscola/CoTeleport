@@ -1,6 +1,6 @@
 package top.whitecola.coteleport.interfaces;
 
-import top.whitecola.coteleport.struct.AbstractRequest;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
 
 public interface IEventHandler {
     default void stop(){};

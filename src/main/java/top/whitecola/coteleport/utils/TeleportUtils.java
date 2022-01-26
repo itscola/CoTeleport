@@ -10,10 +10,8 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.CoTeleport;
-import top.whitecola.coteleport.struct.AbstractRequest;
-import top.whitecola.coteleport.struct.PlayerNoticer;
-
-import java.util.Collection;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
+import top.whitecola.coteleport.wrapper.PlayerNoticer;
 
 public class TeleportUtils {
 

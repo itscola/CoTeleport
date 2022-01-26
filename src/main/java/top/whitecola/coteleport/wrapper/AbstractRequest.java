@@ -1,11 +1,14 @@
-package top.whitecola.coteleport.struct;
+package top.whitecola.coteleport.wrapper;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.interfaces.IRquest;
 
+import java.util.Optional;
+
 public abstract class AbstractRequest implements IRquest {
     protected Player from;
+    protected Player to;
     protected Location tolcation;
     protected long time;
     protected Thread thread;
@@ -37,6 +40,14 @@ public abstract class AbstractRequest implements IRquest {
 
     public Thread getThread() {
         return thread;
+    }
+
+    public Optional<Player> getTo() {
+        return Optional.ofNullable(to);
+    }
+
+    public void setTo(Player to) {
+        this.to = to;
     }
 
     public void setThread(Thread thread) {

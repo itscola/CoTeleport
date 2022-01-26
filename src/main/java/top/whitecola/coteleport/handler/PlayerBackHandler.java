@@ -2,8 +2,8 @@ package top.whitecola.coteleport.handler;
 
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.interfaces.IEventHandler;
-import top.whitecola.coteleport.struct.AbstractRequest;
-import top.whitecola.coteleport.struct.BackRequest;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
+import top.whitecola.coteleport.wrapper.BackRequest;
 import top.whitecola.coteleport.utils.PlayerUtils;
 
 import java.util.Vector;
