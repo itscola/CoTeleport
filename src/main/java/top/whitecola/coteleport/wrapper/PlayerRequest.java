@@ -55,11 +55,12 @@ public class PlayerRequest extends AbstractRequest{
 
     @Override
     public void cancel(){
-        time = -2;
-        thread.stop();
+        setTime(-2);
+        CoTeleport.instance.teleportEventHandler.removeRequest(this);
+        thread.interrupt();
         playsound();
-        to.getPlayer().sendMessage("§e传送取消。");
-        from.getPlayer().sendMessage("§e由于你在传送过程中移动，传送已被取消。");
+        to.getPlayer().sendMessage("§e对方已取消传送。");
+        from.getPlayer().sendMessage("§e传送取消。-> [SHIFT]");
 
     }
 

@@ -10,7 +10,7 @@ import top.whitecola.threader.HiThread;
 import java.util.Vector;
 
 public class PlayerTeleportEventHandler implements IEventHandler {
-    private Vector<AbstractRequest> requests = new Vector<>();
+    private Vector<PlayerRequest> requests = new Vector<>();
     private HiThread thread = new HiThread("PlayerRequestRemover",1000);
 
     public PlayerTeleportEventHandler(){
@@ -32,19 +32,17 @@ public class PlayerTeleportEventHandler implements IEventHandler {
         });
     }
 
-    public void addRequest(AbstractRequest request){
+    public void addRequest(PlayerRequest request){
 
         for(int i=0;i<requests.size();i++) {
 
-            if (requests.get(i) instanceof PlayerRequest) {
 
-                PlayerRequest playerRequest = (PlayerRequest) requests.get(i);
-                if (PlayerUtils.isSamePlayer(playerRequest.getFrom(), request.getTo().get()) || PlayerUtils.isSamePlayer(playerRequest.to, request.getTo().get())) {
-                    requests.remove(playerRequest);
-                    i = i - 1;
-                }
-
+            PlayerRequest playerRequest = requests.get(i);
+            if (PlayerUtils.isSamePlayer(playerRequest.getFrom(), request.getTo().get()) || PlayerUtils.isSamePlayer(playerRequest.to, request.getTo().get())) {
+                requests.remove(playerRequest);
+                i = i - 1;
             }
+
 
 
 
@@ -63,7 +61,7 @@ public class PlayerTeleportEventHandler implements IEventHandler {
     }
 
     public PlayerRequest getPlayerRequest(Player from,Player to){
-        for(AbstractRequest pr : requests){
+        for(PlayerRequest pr : requests){
             if(PlayerUtils.isSamePlayer(pr.getFrom(),from) && PlayerUtils.isSamePlayer(pr.to,to)){
                 return pr;
             }
@@ -91,6 +89,6 @@ public class PlayerTeleportEventHandler implements IEventHandler {
 
     @Override
     public void removeRequest(AbstractRequest request) {
-        IEventHandler.super.removeRequest(request);
+        requests.remove(request);
     }
 }

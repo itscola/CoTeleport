@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import top.whitecola.coteleport.CoTeleport;
 import top.whitecola.coteleport.wrapper.BackRequest;
 import top.whitecola.coteleport.wrapper.PlayerRequest;
@@ -28,18 +29,18 @@ public class PlayerListener implements Listener {
 
     }
 
-//    @EventHandler
-//    public void PlayerShiftEvent(PlayerToggleSneakEvent e){
-//        PlayerRequest playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByFrom(e.getPlayer());
-//        if(playerRequest==null)
-//            return;
-//
-//        if(playerRequest.thread==null)
-//            return;
-//
-//        playerRequest.cancel();
-//
-//    }
+    @EventHandler
+    public void PlayerShiftEvent(PlayerToggleSneakEvent e){
+        PlayerRequest playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByFrom(e.getPlayer());
+        if(playerRequest==null)
+            return;
+
+        if(playerRequest.getThread()==null)
+            return;
+
+        playerRequest.cancel();
+
+    }
 
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent e){

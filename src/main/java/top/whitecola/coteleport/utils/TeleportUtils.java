@@ -41,7 +41,7 @@ public class TeleportUtils {
                 playTeleportingParticle(loc);
                 while(request.getTime()!=-1){
 
-                    if((System.currentTimeMillis()-request.getTime())>=3000){
+                    if((request.getTime()!=-2)&&(System.currentTimeMillis()-request.getTime())>=3000){
                         request.setTime(-1);
                         break;
                     }
@@ -50,7 +50,7 @@ public class TeleportUtils {
                         return;
                     }
 
-                    noticer.getP1().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l即将传送,期间无法移动。"));
+                    noticer.getP1().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l即将传送,期间无法移动。按 SHIFT 以取消传送。"));
 
                     try {
                         Thread.sleep(1000);
@@ -89,8 +89,5 @@ public class TeleportUtils {
         return circleEffect;
     }
 
-    public static boolean isPlayerTeleporting(Player player){
 
-        return false;
-    }
 }
