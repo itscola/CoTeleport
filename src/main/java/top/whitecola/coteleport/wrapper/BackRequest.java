@@ -5,8 +5,6 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import top.whitecola.coteleport.handler.PlayerBackHandler;
-import top.whitecola.coteleport.utils.HandlerUtils;
 import top.whitecola.coteleport.utils.TeleportUtils;
 
 public class BackRequest extends AbstractRequest{

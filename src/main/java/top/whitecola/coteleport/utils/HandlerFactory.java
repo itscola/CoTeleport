@@ -5,7 +5,7 @@ import top.whitecola.coteleport.handler.EventHandlerAdapter;
 import top.whitecola.coteleport.handler.PlayerBackHandler;
 import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 
-public class HandlerUtils {
+public class HandlerFactory {
 
 
     public static <T extends EventHandlerAdapter> T getHandler(Class<T> handler){
