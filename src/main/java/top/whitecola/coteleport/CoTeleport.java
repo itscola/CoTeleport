@@ -24,7 +24,7 @@ public class CoTeleport extends JavaPlugin {
     {
         thread.start();
     }
-    public PlayerTeleportEventHandler teleportEventHandler = new PlayerTeleportEventHandler();
+    private PlayerTeleportEventHandler teleportEventHandler = new PlayerTeleportEventHandler();
     private PlayerBackHandler playerBackHandler = new PlayerBackHandler();
 
 
@@ -78,5 +78,10 @@ public class CoTeleport extends JavaPlugin {
 
     public PlayerBackHandler getPlayerBackHandler() {
         return playerBackHandler;
+    }
+
+
+    public PlayerTeleportEventHandler getTeleportEventHandler() {
+        return teleportEventHandler;
     }
 }

@@ -23,17 +23,15 @@ public class PlayerBackHandler extends EventHandlerAdapter {
 
     @Override
     public void removeRequest(AbstractRequest request) {
-        if(request instanceof AbstractRequest){
-            backRequests.remove((BackRequest) request);
-        }
+        backRequests.remove((BackRequest) request);
     }
 
     public BackRequest getBackRequestByPlayer(Player player){
-        for(int i=0;i<backRequests.size();i++){
-            if(PlayerUtils.isSamePlayer(backRequests.get(i).getFrom(),player)){
-                return backRequests.get(i);
-            }
+        for(BackRequest backRequest : backRequests){
 
+            if(PlayerUtils.isSamePlayer(backRequest.getFrom(),player)){
+                return backRequest;
+            }
         }
         return null;
     }

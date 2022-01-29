@@ -7,9 +7,10 @@ public class PlayerUtils {
         if(player==null || player2==null){
             return false;
         }
-        if(player.getUniqueId().equals(player2.getUniqueId())){
+        if(player.getUniqueId().toString().equals(player2.getUniqueId().toString())){
             return true;
         }
+
         return false;
     }
 }

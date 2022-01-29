@@ -7,6 +7,10 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import top.whitecola.coteleport.CoTeleport;
+import top.whitecola.coteleport.handler.PlayerBackHandler;
+import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
+import top.whitecola.coteleport.utils.HandlerFactory;
+import top.whitecola.coteleport.wrapper.AbstractRequest;
 import top.whitecola.coteleport.wrapper.BackRequest;
 import top.whitecola.coteleport.wrapper.PlayerRequest;
 
@@ -17,7 +21,7 @@ public class PlayerListener implements Listener {
         if(e.getFrom().getBlockX()==e.getTo().getBlockX() && e.getFrom().getBlockY()==e.getTo().getBlockY()&& e.getFrom().getBlockZ()==e.getTo().getBlockZ()){
             return;
         }
-        PlayerRequest playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByFrom(e.getPlayer());
+        PlayerRequest playerRequest = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
         if(playerRequest==null)
             return;
 
@@ -31,24 +35,25 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void PlayerShiftEvent(PlayerToggleSneakEvent e){
-        PlayerRequest playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByFrom(e.getPlayer());
-        if(playerRequest==null)
+        AbstractRequest request = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
+        if(request==null && (request = HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequestByPlayer(e.getPlayer()))==null)
             return;
 
-        if(playerRequest.getThread()==null)
+
+        if(request.getThread()==null)
             return;
 
-        playerRequest.cancel();
+        request.cancel();
 
     }
 
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent e){
-        PlayerRequest playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByFrom(e.getPlayer());
+        PlayerRequest playerRequest = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
         if(playerRequest!=null){
-            CoTeleport.instance.teleportEventHandler.getRequests().remove(playerRequest);
-        }else if((playerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByTo(e.getPlayer()))!=null){
-            CoTeleport.instance.teleportEventHandler.getRequests().remove(playerRequest);
+            HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getRequests().remove(playerRequest);
+        }else if((playerRequest = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByTo(e.getPlayer()))!=null){
+            HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getRequests().remove(playerRequest);
         }
 
 

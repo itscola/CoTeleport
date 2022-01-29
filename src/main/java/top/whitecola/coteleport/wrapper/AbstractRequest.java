@@ -38,8 +38,8 @@ public abstract class AbstractRequest implements IRquest {
     @Override
     public void cancel() {
         setTime(-2);
-        addRequestOrRemoving();
         thread.interrupt();
+        addRequestOrRemoving();
     }
 
     @Override

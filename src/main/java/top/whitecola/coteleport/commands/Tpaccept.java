@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import top.whitecola.annotations.ItsACommand;
 import top.whitecola.commandhandler.ICommand;
 import top.whitecola.coteleport.CoTeleport;
+import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
+import top.whitecola.coteleport.utils.HandlerFactory;
 import top.whitecola.coteleport.wrapper.PlayerRequest;
 
 import java.util.Arrays;
@@ -22,7 +24,7 @@ public class Tpaccept  implements ICommand {
         if(args.length!=1)
             return false;
 
-        PlayerRequest toPlayerRequest = CoTeleport.instance.teleportEventHandler.getPlayerRequestByTo(toPlayer);
+        PlayerRequest toPlayerRequest = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByTo(toPlayer);
         if(toPlayerRequest==null){
             toPlayer.sendMessage("§4你没有被传送请求，或该请求已过期。");
             return true;

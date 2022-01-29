@@ -10,6 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.CoTeleport;
+import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 import top.whitecola.coteleport.wrapper.AbstractRequest;
 import top.whitecola.coteleport.wrapper.PlayerNoticer;
 
@@ -56,7 +57,7 @@ public class TeleportUtils {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        return;
                     }
                 }
 
@@ -70,7 +71,7 @@ public class TeleportUtils {
 
 
                 request.setTime(-1);
-                CoTeleport.instance.teleportEventHandler.getRequests().remove(request);
+                HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getRequests().remove(request);
                 return;
 
             }

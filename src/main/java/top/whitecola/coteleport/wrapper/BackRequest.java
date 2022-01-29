@@ -29,7 +29,7 @@ public class BackRequest extends AbstractRequest{
     @Override
     public void accept() {
         time = System.currentTimeMillis();
-        TeleportUtils.tpaRequestHandle(this,new PlayerNoticer(from,null));
+        thread = TeleportUtils.tpaRequestHandle(this,new PlayerNoticer(from,null));
     }
 
     @Override
@@ -41,6 +41,7 @@ public class BackRequest extends AbstractRequest{
 
     @Override
     public void cancel() {
+        from.sendMessage("´«ËÍÈ¡Ïû¡£");
         super.cancel();
     }
 
