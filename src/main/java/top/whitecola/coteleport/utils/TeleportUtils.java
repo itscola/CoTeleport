@@ -34,6 +34,7 @@ public class TeleportUtils {
     }
 
     public static Thread tpaRequestHandle(AbstractRequest request, PlayerNoticer noticer){
+        // Not mutiple-Thread, It will be added to threads pool.
         Thread th = new Thread(
             ()->{
                 Location fromLocation = request.getFrom().getLocation();

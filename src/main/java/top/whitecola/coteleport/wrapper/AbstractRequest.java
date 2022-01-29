@@ -7,7 +7,6 @@ import top.whitecola.coteleport.handler.PlayerBackHandler;
 import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 import top.whitecola.coteleport.interfaces.IRquest;
 import top.whitecola.coteleport.utils.HandlerUtils;
-
 import java.util.Optional;
 
 public abstract class AbstractRequest implements IRquest {
