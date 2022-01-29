@@ -9,7 +9,7 @@ import top.whitecola.threader.HiThread;
 
 import java.util.Vector;
 
-public class PlayerTeleportEventHandler implements IEventHandler {
+public class PlayerTeleportEventHandler extends EventHandlerAdapter {
     private Vector<PlayerRequest> requests = new Vector<>();
     private HiThread thread = new HiThread("PlayerRequestRemover",1000);
 
