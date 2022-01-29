@@ -43,10 +43,6 @@ public class PlayerTeleportEventHandler implements IEventHandler {
                 i = i - 1;
             }
 
-
-
-
-
         }
 
 

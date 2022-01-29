@@ -26,6 +26,8 @@ public class CoTeleport extends JavaPlugin {
     }
     public PlayerTeleportEventHandler teleportEventHandler = new PlayerTeleportEventHandler();
     private PlayerBackHandler playerBackHandler = new PlayerBackHandler();
+
+
     private HiCommand commands = new HiCommand(instance,"ct");
     public EffectManager effectManager = new EffectManager(this);
 
