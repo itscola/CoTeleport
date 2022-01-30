@@ -5,13 +5,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import top.whitecola.annotations.ItsACommand;
 import top.whitecola.commandhandler.ICommand;
-import top.whitecola.coteleport.CoTeleport;
+import top.whitecola.coteleport.handler.PlayerBackHandler;
+import top.whitecola.coteleport.utils.HandlerFactory;
 import top.whitecola.coteleport.wrapper.BackRequest;
-import top.whitecola.coteleport.utils.PlayerUtils;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 @ItsACommand(CommandNmae = "back",premission = "ct.back")
 public class Back implements ICommand {
@@ -22,15 +21,10 @@ public class Back implements ICommand {
 
         Player fromP = (Player) commandSender;
 
-        Vector<BackRequest> backRequests = CoTeleport.instance.getPlayerBackHandler().getBackRequests();
-        if(backRequests==null)
-            return false;
-
-        for(BackRequest backRequest : backRequests){
-            if(PlayerUtils.isSamePlayer(backRequest.getFrom(),fromP)){
-                backRequest.accept();
-                return true;
-            }
+        BackRequest backRequest;
+        if((backRequest = HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequestByPlayer(fromP))!=null){
+            backRequest.accept();
+            return true;
         }
 
         fromP.sendMessage("§4上一个地点已过期或不存在，无法传送。");

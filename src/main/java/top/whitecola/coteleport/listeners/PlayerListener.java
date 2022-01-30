@@ -21,11 +21,15 @@ public class PlayerListener implements Listener {
         if(e.getFrom().getBlockX()==e.getTo().getBlockX() && e.getFrom().getBlockY()==e.getTo().getBlockY()&& e.getFrom().getBlockZ()==e.getTo().getBlockZ()){
             return;
         }
-        PlayerRequest playerRequest = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
-        if(playerRequest==null)
+
+        AbstractRequest request = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
+        if(request==null && (request = HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequestByPlayer(e.getPlayer()))==null)
             return;
 
-        if(playerRequest.getThread()==null)
+        if(request.getThread()==null)
+            return;
+
+        if(request.getTime()==-2 || request.getTime()==-1)
             return;
 
         e.setCancelled(true);
@@ -38,7 +42,6 @@ public class PlayerListener implements Listener {
         AbstractRequest request = HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getPlayerRequestByFrom(e.getPlayer());
         if(request==null && (request = HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequestByPlayer(e.getPlayer()))==null)
             return;
-
 
         if(request.getThread()==null)
             return;
@@ -57,10 +60,12 @@ public class PlayerListener implements Listener {
         }
 
 
-        BackRequest backRequest = CoTeleport.instance.getPlayerBackHandler().getBackRequestByPlayer(e.getPlayer());
+        BackRequest backRequest = HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequestByPlayer(e.getPlayer());
         if(backRequest!=null){
             backRequest.cancel();
+            backRequest.addRequestOrRemoving();
         }
+
         return;
     }
 

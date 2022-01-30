@@ -38,8 +38,13 @@ public abstract class AbstractRequest implements IRquest {
     @Override
     public void cancel() {
         setTime(-2);
-        thread.interrupt();
-        addRequestOrRemoving();
+        if(thread!=null)
+            thread.interrupt();
+
+        if(!(this instanceof BackRequest))
+            addRequestOrRemoving();
+
+        thread = null;
     }
 
     @Override
@@ -90,7 +95,7 @@ public abstract class AbstractRequest implements IRquest {
         this.thread = thread;
     }
 
-    private void addRequestOrRemoving(){
+    public void addRequestOrRemoving(){
         if(this instanceof PlayerRequest) {
             if(getThread()==null && time!=-2){
                 HandlerFactory.getHandler(PlayerTeleportEventHandler.class).addRequest(this);

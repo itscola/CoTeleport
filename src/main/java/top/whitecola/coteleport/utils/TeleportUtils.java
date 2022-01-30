@@ -10,6 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import top.whitecola.coteleport.CoTeleport;
+import top.whitecola.coteleport.handler.PlayerBackHandler;
 import top.whitecola.coteleport.handler.PlayerTeleportEventHandler;
 import top.whitecola.coteleport.wrapper.AbstractRequest;
 import top.whitecola.coteleport.wrapper.PlayerNoticer;
@@ -45,6 +46,13 @@ public class TeleportUtils {
 
                     if((request.getTime()!=-2)&&(System.currentTimeMillis()-request.getTime())>=3000){
                         request.setTime(-1);
+                        teleportPlace(request.getFrom(), request.getTolcation());
+
+                        noticer.getP1().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l传送完成！"));
+
+                        if(noticer.getP2()!=null){
+                            noticer.getP2().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l传送完成！"));
+                        }
                         break;
                     }
 
@@ -55,23 +63,15 @@ public class TeleportUtils {
                     noticer.getP1().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l即将传送,期间无法移动。按 SHIFT 以取消传送。"));
 
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         return;
                     }
                 }
 
-                teleportPlace(request.getFrom(), request.getTolcation());
-
-                noticer.getP1().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l传送完成！"));
-
-                if(noticer.getP2()!=null){
-                    noticer.getP2().spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§a§l传送完成！"));
-                }
-
-
                 request.setTime(-1);
                 HandlerFactory.getHandler(PlayerTeleportEventHandler.class).getRequests().remove(request);
+                HandlerFactory.getHandler(PlayerBackHandler.class).getBackRequests().remove(request);
                 return;
 
             }
