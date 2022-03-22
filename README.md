@@ -1,5 +1,5 @@
 # CoTeleport
-A lightwight teleporting plugin.
+A advanced teleporting plugin.
 
 https://github.com/itscola/CoTeleport/releases
 
@@ -9,7 +9,7 @@ https://github.com/itscola/CoTeleport/releases
 3. Spawn circle particle when a player is teleporting.
 4. Press "SHIFT" to cancel teleporting progress while a player is teleporting.
 5. Clickable text to interact with some sounds.
-6. Good OOP codes.
+6. Good OOP Java codes.
 
 
 ![A40775311596F097FD425C58751AABCB](https://user-images.githubusercontent.com/47351250/159409938-19e3c7e9-2c06-461a-9324-c9a71a7ba41c.png)
